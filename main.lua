@@ -6,6 +6,7 @@ function _init()
 	pacy=52
 	points=0
 	things={}
+	patterns = {}
 	gameover=false
 	
 	--constants
@@ -29,36 +30,39 @@ end
 function _update()
 	if (gameover) then
 		if (btn(❎)) then
-		 things={}
-		 initialstate()
-		 cls()
+			things={}
+			initialstate()
+			cls()
 			gameover = false
 		end 
 	else
-		pacspr=alternate(pacsprplus,
-																		sprspeed,2)
-		ghstredspr=alternate(ghstredplus,
-																			sprspeed,2)
+		pacspr=alternate(pacsprplus, sprspeed, 2)
+		ghstredspr=alternate(ghstredplus, sprspeed, 2)
 		
 		button_selection()
-		--mover e insertar nuevas pills
+		
 		for t in all(things) do
+			printh("things size:"..count(things),"pac_in_line/log")
 			t.x-=1
 			
 			if (t.x == 95) then
-			 if(irndb(1,5) == 1) then
-			  addghost(things,t)
-			 else
-			  addpill(things,t)
-			 end
+				if(irndb(1,5) == 1) then
+					addghost(things,t)
+				else
+					addpill(things,t)
+				end
 			end
 			
-			if (collide_pac(t)) then
-				if (t.t == pill_type) then
-					del(things,t)
-					points+=1
-				else
-					gameover=true
+			if (t.x < 0) then
+				del(things, t)
+			else
+				if (collide_pac(t)) then
+					if (t.t == pill_type) then
+						del(things, t)
+						points+=1
+					else
+						gameover=true
+					end
 				end
 			end
 		end
@@ -93,13 +97,11 @@ function initialstate()
 end
 
 function addpill(things,t)
-	add(things,{x=irndb(120,128),
-					y=t.y,s=pillspr,t=pill_type,w=3,h=2})
+	add(things,{x=irndb(120,128),y=t.y,s=pillspr,t=pill_type,w=3,h=2})
 end
 
 function addghost(things,t)
-	add(things,{x=irndb(120,128),
-					y=t.y,s=ghstredspr,t=ghost_type,w=7,h=8})
+	add(things,{x=irndb(120,128),y=t.y,s=ghstredspr,t=ghost_type,w=7,h=8})
 end
 
 function collide_pac(t)
@@ -124,7 +126,6 @@ end
 
 function button_selection()
 	if (btn(⬅️)) then
-	 printh("izquierda","pac_in_line/log")
 	 --[[pacx=max(0,pacx-1)
 		pacfx=true
 		pacfy=false
