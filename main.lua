@@ -6,6 +6,8 @@ function _init()
 	pacy=52
 	points=0
 	things={}
+	add_things={}
+	del_things={}
 	patterns = {}
 	gameover=false
 	
@@ -31,6 +33,8 @@ function _update()
 	if (gameover) then
 		if (btn(❎)) then
 			things={}
+			add_things={}
+			del_things={}
 			initialstate()
 			cls()
 			gameover = false
@@ -40,25 +44,38 @@ function _update()
 		ghstredspr=alternate(ghstredplus, sprspeed, 2)
 		
 		button_selection()
+
+		if(#del_things > 0) then
+			for i=#del_things,1,-1 do
+				deli(things, del_things[i])
+			end
+		end
+
+		for at in all(add_things) do
+			add(things, at)
+		end
+
+		add_things = {}
+		del_things = {}
 		
-		for t in all(things) do
-			printh("things size:"..count(things),"pac_in_line/log")
+		for i=1,#things do
+			t=things[i]
 			t.x-=1
 			
 			if (t.x == 95) then
 				if(irndb(1,5) == 1) then
-					addghost(things,t)
+					add(add_things,{x=irndb(120,128),y=t.y,s=ghstredspr,t=ghost_type,w=7,h=8})
 				else
-					addpill(things,t)
+					add(add_things,{x=irndb(120,128),y=t.y,s=pillspr,t=pill_type,w=3,h=2})
 				end
 			end
 			
 			if (t.x < 0) then
-				del(things, t)
+				add(del_things, i)
 			else
 				if (collide_pac(t)) then
 					if (t.t == pill_type) then
-						del(things, t)
+						add(del_things, i)
 						points+=1
 					else
 						gameover=true
@@ -96,14 +113,6 @@ function initialstate()
 	add(things,{x=irndb(100,120),y=row3y,s=pillspr,t=0,w=2,h=2})
 end
 
-function addpill(things,t)
-	add(things,{x=irndb(120,128),y=t.y,s=pillspr,t=pill_type,w=3,h=2})
-end
-
-function addghost(things,t)
-	add(things,{x=irndb(120,128),y=t.y,s=ghstredspr,t=ghost_type,w=7,h=8})
-end
-
 function collide_pac(t)
 	if (pacy == t.y and
 	    t.x >= (pacx-t.w) and
@@ -125,31 +134,21 @@ function print_values()
 end
 
 function button_selection()
-	if (btn(⬅️)) then
-	 --[[pacx=max(0,pacx-1)
-		pacfx=true
+	if(btn(⬅️)) then
+		stop()
+	end
+
+	if (btnp(⬆️) and pacy>(up_line+8)) then
+		pacy=max(0,pacy-8) 
+		pacfx=false
 		pacfy=false
-		pacsprplus=1]]
+		pacsprplus=1 
 	else
-		if (btn(➡️)) then
-		 --[[pacx=min(120,pacx+1)
+		if (btnp(⬇️) and pacy<(dw_line-8)) then
+			pacy=min(120,pacy+8) 
 			pacfx=false
 			pacfy=false
-			pacsprplus=1--]]
-		else
-			 if (btnp(⬆️) and pacy>(up_line+8)) then
-				 pacy=max(0,pacy-8) 
-					pacfx=false
-					pacfy=false
-					pacsprplus=1 
-				else
-					if (btnp(⬇️) and pacy<(dw_line-8)) then
-						pacy=min(120,pacy+8) 
-						pacfx=false
-						pacfy=false
-						pacsprplus=1
-					end 
-				end
-		end
+			pacsprplus=1
+		end 
 	end
 end
