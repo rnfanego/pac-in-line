@@ -3,8 +3,12 @@ version 41
 __lua__
 #include utilities.lua
 #include main.lua
+#include object.lua
+
 #include scenes/game.lua
 #include scenes/title.lua
+
+#include entities/pac.lua
 #include entities/row_pattern.lua
 __gfx__
 0000000000aaa00000aaaa0000000000000000000088880000888800000000000000000000000000000000000000000000000000000000000000000000000000

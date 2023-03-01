@@ -2,8 +2,6 @@ function _init()
 	cls()
 	--variables
 	sprspeed=10
-	pacx=24
-	pacy=52
 	points=0
 	things={}
 	add_things={}
@@ -21,10 +19,9 @@ function _init()
 	row1y=52
 	row2y=60
 	row3y=68
-	pacspr=1
-	pacsprplus=1
 	pill_type=0
 	ghost_type=1
+	pac.init()
 	
 	initialstate()
 end
@@ -40,7 +37,7 @@ function _update()
 			gameover = false
 		end 
 	else
-		pacspr=alternate(pacsprplus, sprspeed, 2)
+		pac.update()
 		ghstredspr=alternate(ghstredplus, sprspeed, 2)
 		
 		button_selection()
@@ -73,7 +70,7 @@ function _update()
 			if (t.x < 0) then
 				add(del_things, i)
 			else
-				if (collide_pac(t)) then
+				if (pac.collide(t)) then
 					if (t.t == pill_type) then
 						add(del_things, i)
 						points+=1
@@ -93,7 +90,7 @@ function _draw()
 		print("press ❎ to continue",25,60,8)
 	else
 		cls()	
-		spr(pacspr,pacx,pacy)			
+		pac.draw()	
 		draw_map()
 		for t in all(things) do
 			if (t.t == pill_type) then
@@ -113,15 +110,6 @@ function initialstate()
 	add(things,{x=irndb(100,120),y=row3y,s=pillspr,t=0,w=2,h=2})
 end
 
-function collide_pac(t)
-	if (pacy == t.y and
-	    t.x >= (pacx-t.w) and
-	    t.x < (pacx+t.w)) then
-		return true
-	end
-	return false
-end
-
 function draw_map()
 	for i=0,15 do
 		spr(16,0+(i*8),up_line)
@@ -138,17 +126,11 @@ function button_selection()
 		stop()
 	end
 
-	if (btnp(⬆️) and pacy>(up_line+8)) then
-		pacy=max(0,pacy-8) 
-		pacfx=false
-		pacfy=false
-		pacsprplus=1 
+	if (btnp(⬆️) and pac.y>(up_line+8)) then
+		pac.moveUp()
 	else
-		if (btnp(⬇️) and pacy<(dw_line-8)) then
-			pacy=min(120,pacy+8) 
-			pacfx=false
-			pacfy=false
-			pacsprplus=1
+		if (btnp(⬇️) and pac.y<(dw_line-8)) then
+			pac.moveDown()
 		end 
 	end
 end
