@@ -9,11 +9,11 @@ pac = object:new({
     end,
 
     update = function(self)
-        spr=alternate(sprplus, sprspeed, 2)
+        self.spr=alternate(self.sprplus, sprspeed, 2)
 	end,
 
 	draw = function(self)
-        spr(spr,x,y)
+        spr(self.spr,self.x,self.y)
 	end,
 
     collide = function(self, t)

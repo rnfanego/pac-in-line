@@ -1,7 +1,6 @@
 function _init()
 	cls()
 	--variables
-	sprspeed=10
 	points=0
 	things={}
 	add_things={}
@@ -21,6 +20,8 @@ function _init()
 	row3y=68
 	pill_type=0
 	ghost_type=1
+	sprspeed=10
+	
 	pac.init()
 	
 	initialstate()
@@ -37,7 +38,7 @@ function _update()
 			gameover = false
 		end 
 	else
-		pac.update()
+		pac:update()
 		ghstredspr=alternate(ghstredplus, sprspeed, 2)
 		
 		button_selection()
@@ -70,7 +71,7 @@ function _update()
 			if (t.x < 0) then
 				add(del_things, i)
 			else
-				if (pac.collide(t)) then
+				if (pac:collide(t)) then
 					if (t.t == pill_type) then
 						add(del_things, i)
 						points+=1
@@ -90,7 +91,7 @@ function _draw()
 		print("press ❎ to continue",25,60,8)
 	else
 		cls()	
-		pac.draw()	
+		pac:draw()	
 		draw_map()
 		for t in all(things) do
 			if (t.t == pill_type) then
@@ -127,10 +128,10 @@ function button_selection()
 	end
 
 	if (btnp(⬆️) and pac.y>(up_line+8)) then
-		pac.moveUp()
+		pac:moveUp()
 	else
 		if (btnp(⬇️) and pac.y<(dw_line-8)) then
-			pac.moveDown()
+			pac:moveDown()
 		end 
 	end
 end
