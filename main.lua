@@ -9,20 +9,13 @@ function _init()
 	gameover=false
 	
 	--constants
-	ghstredspr=5
-	ghstredplus=5
-	pillspr=18
 	bpillspr=19
 	up_line=44
 	dw_line=76
 	row1y=52
 	row2y=60
 	row3y=68
-	pill_type=0
-	ghost_type=1
 	sprspeed=10
-	
-	pac.init()
 	
 	initialstate()
 end
@@ -39,7 +32,6 @@ function _update()
 		end 
 	else
 		pac:update()
-		ghstredspr=alternate(ghstredplus, sprspeed, 2)
 		
 		button_selection()
 
@@ -58,13 +50,14 @@ function _update()
 		
 		for i=1,#things do
 			t=things[i]
-			t.x-=1
+			
+			t:update()
 			
 			if (t.x == 95) then
 				if(irndb(1,5) == 1) then
-					add(add_things,{x=irndb(120,128),y=t.y,s=ghstredspr,t=ghost_type,w=7,h=8})
+					add(add_things,ghost.create(irndb(120,128),t.y))
 				else
-					add(add_things,{x=irndb(120,128),y=t.y,s=pillspr,t=pill_type,w=3,h=2})
+					add(add_things,pill.create(irndb(120,128),t.y))
 				end
 			end
 			
@@ -72,7 +65,8 @@ function _update()
 				add(del_things, i)
 			else
 				if (pac:collide(t)) then
-					if (t.t == pill_type) then
+					--printh("type"..t.t,"pac_in_line/log")
+					if (t.isScorable()) then
 						add(del_things, i)
 						points+=1
 					else
@@ -90,15 +84,11 @@ function _draw()
 		print("game over",45,50,8)
 		print("press ❎ to continue",25,60,8)
 	else
-		cls()	
-		pac:draw()	
+		cls()
+		pac:draw()
 		draw_map()
 		for t in all(things) do
-			if (t.t == pill_type) then
-				spr(t.s,t.x,t.y)
-			else
-				spr(ghstredspr,t.x,t.y)
-			end
+			t:draw()
 		end
 		print_values()
 	end												
@@ -106,9 +96,10 @@ end
 
 function initialstate()
 	points=0
-	add(things,{x=irndb(100,120),y=row1y,s=pillspr,t=0,w=2,h=2})
-	add(things,{x=irndb(100,120),y=row2y,s=pillspr,t=0,w=2,h=2})
-	add(things,{x=irndb(100,120),y=row3y,s=pillspr,t=0,w=2,h=2})
+	pac:init()
+	add(add_things,pill.create(irndb(120,128),row1y))
+	add(add_things,pill.create(irndb(120,128),row2y))
+	add(add_things,pill.create(irndb(120,128),row3y))
 end
 
 function draw_map()
@@ -129,9 +120,7 @@ function button_selection()
 
 	if (btnp(⬆️) and pac.y>(up_line+8)) then
 		pac:moveUp()
-	else
-		if (btnp(⬇️) and pac.y<(dw_line-8)) then
-			pac:moveDown()
-		end 
+	elseif (btnp(⬇️) and pac.y<(dw_line-8)) then
+		pac:moveDown()		
 	end
 end

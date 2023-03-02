@@ -5,7 +5,9 @@ pac = object:new({
 	sprplus=1,
 
     init = function(self)
-        
+        self.x=24
+	    self.y=52
+        self.spr=1
     end,
 
     update = function(self)
