@@ -1,4 +1,5 @@
 patternGenerator = object:new({
+	patterns = {},
     init = function(self)
 	end,
 

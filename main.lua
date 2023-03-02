@@ -53,11 +53,11 @@ function _update()
 			
 			t:update()
 			
-			if (t.x == 95) then
+			if (t.x == 115) then
 				if(irndb(1,5) == 1) then
-					add(add_things,ghost.create(irndb(120,128),t.y))
+					add(add_things,ghost.create(irndb(127,127),t.y))
 				else
-					add(add_things,pill.create(irndb(120,128),t.y))
+					add(add_things,pill.create(irndb(127,127),t.y))
 				end
 			end
 			
@@ -97,9 +97,10 @@ end
 function initialstate()
 	points=0
 	pac:init()
-	add(add_things,pill.create(irndb(120,128),row1y))
-	add(add_things,pill.create(irndb(120,128),row2y))
-	add(add_things,pill.create(irndb(120,128),row3y))
+	patternGenerator:init()
+	add(add_things,pill.create(irndb(127,127),row1y))
+	add(add_things,pill.create(irndb(127,127),row2y))
+	add(add_things,pill.create(irndb(127,127),row3y))
 end
 
 function draw_map()
