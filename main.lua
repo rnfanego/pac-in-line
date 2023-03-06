@@ -12,9 +12,6 @@ function _init()
 	bpillspr=19
 	up_line=44
 	dw_line=76
-	row1y=52
-	row2y=60
-	row3y=68
 	sprspeed=10
 	
 	initialstate()
@@ -41,6 +38,15 @@ function _update()
 			end
 		end
 
+		--if (#add_things == 0) then
+		--	add_things = patternGenerator:getThings()
+		--end
+
+		--if (#add_things > 0) then
+		--	add(things, add_things[1])
+		--	deli(add_things, 1)
+		--end
+		
 		for at in all(add_things) do
 			add(things, at)
 		end
@@ -54,11 +60,13 @@ function _update()
 			t:update()
 			
 			if (t.x == 115) then
-				if(irndb(1,5) == 1) then
+				--[[if(irndb(1,5) == 1) then
 					add(add_things,ghost.create(irndb(127,127),t.y))
 				else
 					add(add_things,pill.create(irndb(127,127),t.y))
-				end
+				end]]
+				printh("type"..#patternGenerator:get_thing(),"pac_in_line/log")
+				add(add_things, patternGenerator:get_thing())
 			end
 			
 			if (t.x < 0) then
@@ -98,9 +106,10 @@ function initialstate()
 	points=0
 	pac:init()
 	patternGenerator:init()
-	add(add_things,pill.create(irndb(127,127),row1y))
-	add(add_things,pill.create(irndb(127,127),row2y))
-	add(add_things,pill.create(irndb(127,127),row3y))
+	add(add_things, patternGenerator:get_thing())
+	--add(add_things,pill.create(irndb(127,127),row1y))
+	--add(add_things,pill.create(irndb(127,127),row2y))
+	--add(add_things,pill.create(irndb(127,127),row3y))
 end
 
 function draw_map()

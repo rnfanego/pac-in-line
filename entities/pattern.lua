@@ -1,28 +1,48 @@
 pattern = object:new({
-    things = {},
+    row1y=52,
+	row2y=60,
+	row3y=68,
     init = function(self)
-        r = irndb(1,5)
-        self:create(compositions[r])
+        things = {}
+        r = irndb(1,#compositions)
+        self:initialize(compositions[r])
 	end,
 
-	update = function(self)
-	end,
+    create = function()
+        local p = pattern:new({})
+        p:init()
+        return p
+    end,
 
-    create = function(self, composition)
+    initialize = function(self, composition)
         blueprint = composition.blueprint
         for i=1,#blueprint do
-            c = blueprint[i]
-
-            for e in all(c.elements) do
+            b = blueprint[i]
+            --printh("composition elements"..#b.elements,"pac_in_line/log")
+            for e in all(b.elements) do
                 if(e == "pill") then
-                    add(things, pill.create(127,c.y))
+                    add(things, pill.create(127,b.y))
                 end
 
                 if(e == "ghost") then
-                    add(things, pill.create(127,c.y))
+                    add(things, ghost.create(127,b.y))
                 end
             end
         end
+    end,
+
+    get_thing = function(self)
+        t = things[1]
+        deli(things,1)
+        return t
+    end,
+
+    is_empty = function(self)
+        return count(self.things) == 0
+    end,
+
+    get_things = function(self)
+        return self.things
     end
 })
 
@@ -33,7 +53,7 @@ compositions = {
         name = "E11",
         blueprint = {
             {
-                y = row1y,
+                y = pattern.row1y,
                 elements = {"pill","pill","pill","pill","ghost"}
             }
         }
@@ -42,7 +62,7 @@ compositions = {
         name = "E12",
         blueprint = {
             {
-                y = row2y,
+                y = pattern.row2y,
                 elements = {"pill","pill","pill","pill","ghost"}
             }
         }
@@ -51,7 +71,7 @@ compositions = {
         name = "E13",
         blueprint = {
             {
-                y = row2y,
+                y = pattern.row3y,
                 elements = {"pill","pill","pill","pill","ghost"}
             }
         }
