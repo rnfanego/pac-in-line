@@ -28,20 +28,5 @@ patternGenerator = object:new({
 		end
 
 		return p:get_thing()
-	end,
-
-	--[[getThings = function(self)
-		things = {}
-		if (#patterns == 0) then
-			self.generatePatterns()
-		end
-
-		for p in patterns do
-			for t in p.things do
-				add(things,t)
-			end
-		end
-		patterns = {}
-		return things
-	end]]
+	end
 })
