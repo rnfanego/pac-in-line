@@ -77,6 +77,7 @@ end
 
 function _draw()
 	if (gameover) then
+		--sfx(-1)
 		rectfill(23,47,105,67,12)
 		print("game over",45,50,8)
 		print("press ❎ to continue",25,60,8)

@@ -12,6 +12,9 @@ pac = object:new({
 
     update = function(self)
         self.spr=alternate(self.sprplus, sprspeed, 2)
+        if(stat(46)!=0) then
+            sfx(0, 0)
+        end
 	end,
 
 	draw = function(self)
@@ -22,7 +25,7 @@ pac = object:new({
         if (t:isCollisionable() and
             self.y == t.y and 
             t.x >= (self.x-t.w) and 
-            t.x < (self.x+t.w)) then
+            t.x < (self.x+t.w)) then            
             return true
 	    end
 	    return false
