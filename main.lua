@@ -39,19 +39,23 @@ function _update()
 		end
 		
 		for at in all(add_things) do
-			add(things, at)
+			for a in all(at) do
+				add(things, a)
+			end
 		end
 
 		add_things = {}
 		del_things = {}
 		
+		local generated = false
 		for i=1,#things do
 			t=things[i]
 			
 			t:update()
 			
-			if (t.x == 115) then
+			if (t.x == 115 and not generated) then
 				add(add_things, patternGenerator:get_thing())
+				generated = true
 			end
 			
 			if (t.x < 0) then

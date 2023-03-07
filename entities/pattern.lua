@@ -4,8 +4,9 @@ pattern = object:new({
 	row3y=68,
     init = function(self)
         self.things = {}
-        r = irndb(1,#compositions)
-        self:initialize(compositions[r])
+        --r = irndb(1,#compositions)
+        --printh("composition elements"..r,"pac_in_line/log")
+        self:initialize(rnd(compositions))
 	end,
 
     create = function()
@@ -15,23 +16,27 @@ pattern = object:new({
     end,
 
     initialize = function(self, composition)
-        local blueprint = composition.blueprint
-        for i=1,#blueprint do
-            local b = blueprint[i]
+        local elements = composition.elements
+        for i=1,#elements do
+            local es = elements[i]
             --printh("composition elements"..#b.elements,"pac_in_line/log")
-            for e in all(b.elements) do
-                if(e == "pill") then
-                    add(self.things, pill.create(127,b.y))
+            local aux = {}
+            for e in all(es) do
+                
+                if(e[1] == "pill") then
+                    add(aux, pill.create(127,e[2]))
                 end
 
-                if(e == "ghost") then
-                    add(self.things, ghost.create(127,b.y))
+                if(e[1] == "ghost") then
+                    add(aux, ghost.create(127,e[2]))
                 end
 
-                if (e == "empty") then
-                    add(self.things, empty.create(127,b.y))
+                if (e[1] == "empty") then
+                    add(aux, empty.create(127,e[2]))
                 end
             end
+
+            add(self.things, aux)
         end
     end,
 
@@ -50,34 +55,45 @@ pattern = object:new({
     end
 })
 
-keys = {"E11", "E12", "E13"}
-
 compositions = {
     {
         name = "E11",
-        blueprint = {
-            {
-                y = pattern.row1y,
-                elements = {"pill","pill","pill","pill","ghost"}
-            }
+        elements = {
+            {{"pill", pattern.row1y}},
+            {{"pill", pattern.row1y}},
+            {{"pill", pattern.row1y}},
+            {{"pill", pattern.row1y}},
+            {{"ghost", pattern.row1y}}
         }
     },
     {
         name = "E12",
-        blueprint = {
-            {
-                y = pattern.row2y,
-                elements = {"pill","pill","pill","pill","ghost"}
-            }
+        elements = {
+            {{"pill", pattern.row2y}},
+            {{"pill", pattern.row2y}},
+            {{"pill", pattern.row2y}},
+            {{"pill", pattern.row2y}},
+            {{"ghost", pattern.row2y}}
         }
     },
     {
         name = "E13",
-        blueprint = {
-            {
-                y = pattern.row3y,
-                elements = {"pill","pill","pill","pill","ghost"}
-            }
+        elements = {
+            {{"pill", pattern.row3y}},
+            {{"pill", pattern.row3y}},
+            {{"pill", pattern.row3y}},
+            {{"pill", pattern.row3y}},
+            {{"ghost", pattern.row3y}}
+        }
+    },
+    {
+        name = "E212",
+        elements = {
+            {{"pill", pattern.row1y}},
+            {{"pill", pattern.row1y}},
+            {{"ghost", pattern.row1y},{"pill", pattern.row2y}},
+            {{"pill", pattern.row1y},{"pill", pattern.row2y}},
+            {{"pill", pattern.row1y},{"ghost", pattern.row2y}}
         }
     }
 }
