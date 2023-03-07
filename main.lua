@@ -65,7 +65,7 @@ function _update()
 				else
 					add(add_things,pill.create(irndb(127,127),t.y))
 				end]]
-				printh("type"..#patternGenerator:get_thing(),"pac_in_line/log")
+				--printh("type"..#patternGenerator:get_thing(),"pac_in_line/log")
 				add(add_things, patternGenerator:get_thing())
 			end
 			

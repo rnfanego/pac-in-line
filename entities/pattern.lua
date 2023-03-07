@@ -3,7 +3,7 @@ pattern = object:new({
 	row2y=60,
 	row3y=68,
     init = function(self)
-        things = {}
+        self.things = {}
         r = irndb(1,#compositions)
         self:initialize(compositions[r])
 	end,
@@ -15,25 +15,25 @@ pattern = object:new({
     end,
 
     initialize = function(self, composition)
-        blueprint = composition.blueprint
+        local blueprint = composition.blueprint
         for i=1,#blueprint do
-            b = blueprint[i]
+            local b = blueprint[i]
             --printh("composition elements"..#b.elements,"pac_in_line/log")
             for e in all(b.elements) do
                 if(e == "pill") then
-                    add(things, pill.create(127,b.y))
+                    add(self.things, pill.create(127,b.y))
                 end
 
                 if(e == "ghost") then
-                    add(things, ghost.create(127,b.y))
+                    add(self.things, ghost.create(127,b.y))
                 end
             end
         end
     end,
 
     get_thing = function(self)
-        t = things[1]
-        deli(things,1)
+        local t = self.things[1]
+        deli(self.things,1)
         return t
     end,
 
