@@ -4,8 +4,6 @@ pattern = object:new({
 	row3y=68,
     init = function(self)
         self.things = {}
-        --r = irndb(1,#compositions)
-        --printh("composition elements"..r,"pac_in_line/log")
         self:initialize(rnd(compositions))
 	end,
 
