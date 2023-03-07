@@ -27,6 +27,10 @@ pattern = object:new({
                 if(e == "ghost") then
                     add(self.things, ghost.create(127,b.y))
                 end
+
+                if (e == "empty") then
+                    add(self.things, empty.create(127,b.y))
+                end
             end
         end
     end,

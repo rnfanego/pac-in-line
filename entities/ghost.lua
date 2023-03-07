@@ -21,6 +21,10 @@ ghost = object:new({
         return false
 	end,
 
+    isCollisionable = function(self)
+        return true
+	end,
+
     create = function(x,y)
         g = ghost:new({x=x,y=y})
         g:init()

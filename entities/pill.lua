@@ -19,6 +19,10 @@ pill = object:new({
         return true
 	end,
 
+    isCollisionable = function(self)
+        return true
+	end,
+
     create = function(x,y)
         p = pill:new({x=x,y=y})
         p:init()

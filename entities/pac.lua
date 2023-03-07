@@ -19,7 +19,8 @@ pac = object:new({
 	end,
 
     collide = function(self, t)
-        if (self.y == t.y and 
+        if (t:isCollisionable() and
+            self.y == t.y and 
             t.x >= (self.x-t.w) and 
             t.x < (self.x+t.w)) then
             return true

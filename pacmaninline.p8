@@ -11,6 +11,7 @@ __lua__
 #include entities/pac.lua
 #include entities/ghost.lua
 #include entities/pill.lua
+#include entities/empty.lua
 #include entities/pattern_generator.lua
 #include entities/pattern.lua
 __gfx__
