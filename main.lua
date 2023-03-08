@@ -7,6 +7,7 @@ function _init()
 	del_things={}
 	patterns = {}
 	gameover=false
+	current_scene=title
 	
 	--constants
 	bpillspr=19
@@ -102,10 +103,7 @@ function initialstate()
 end
 
 function draw_map()
-	for i=0,15 do
-		spr(16,0+(i*8),up_line)
-		spr(17,0+(i*8),dw_line)
-	end
+	map()
 end
 
 function print_values()
