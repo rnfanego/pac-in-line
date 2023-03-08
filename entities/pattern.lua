@@ -1,7 +1,4 @@
 pattern = object:new({
-    row1y=52,
-	row2y=60,
-	row3y=68,
     init = function(self)
         self.things = {}
         self:initialize(rnd(compositions))
@@ -20,7 +17,6 @@ pattern = object:new({
             --printh("composition elements"..#b.elements,"pac_in_line/log")
             local aux = {}
             for e in all(es) do
-                
                 if(e[1] == "pill") then
                     add(aux, pill.create(127,e[2]))
                 end
@@ -53,45 +49,81 @@ pattern = object:new({
     end
 })
 
+rows = {
+    r1=52,
+	r2=60,
+	r3=68,
+}
+
 compositions = {
     {
         name = "E11",
         elements = {
-            {{"pill", pattern.row1y}},
-            {{"pill", pattern.row1y}},
-            {{"pill", pattern.row1y}},
-            {{"pill", pattern.row1y}},
-            {{"ghost", pattern.row1y}}
+            {{"pill", rows.r1}},
+            {{"pill", rows.r1}},
+            {{"pill", rows.r1}},
+            {{"pill", rows.r1}},
+            {{"ghost", rows.r1}}
         }
     },
     {
         name = "E12",
         elements = {
-            {{"pill", pattern.row2y}},
-            {{"pill", pattern.row2y}},
-            {{"pill", pattern.row2y}},
-            {{"pill", pattern.row2y}},
-            {{"ghost", pattern.row2y}}
+            {{"pill", rows.r2}},
+            {{"pill", rows.r2}},
+            {{"pill", rows.r2}},
+            {{"pill", rows.r2}},
+            {{"ghost", rows.r2}}
         }
     },
     {
         name = "E13",
         elements = {
-            {{"pill", pattern.row3y}},
-            {{"pill", pattern.row3y}},
-            {{"pill", pattern.row3y}},
-            {{"pill", pattern.row3y}},
-            {{"ghost", pattern.row3y}}
+            {{"pill", rows.r3}},
+            {{"pill", rows.r3}},
+            {{"pill", rows.r3}},
+            {{"pill", rows.r3}},
+            {{"ghost", rows.r3}}
         }
     },
     {
         name = "E212",
         elements = {
-            {{"pill", pattern.row1y}},
-            {{"pill", pattern.row1y}},
-            {{"ghost", pattern.row1y},{"pill", pattern.row2y}},
-            {{"pill", pattern.row1y},{"pill", pattern.row2y}},
-            {{"pill", pattern.row1y},{"ghost", pattern.row2y}}
+            {{"pill", rows.r1}},
+            {{"pill", rows.r1}},
+            {{"ghost", rows.r1},{"pill", rows.r2}},
+            {{"pill", rows.r1},{"pill", rows.r2}},
+            {{"pill", rows.r1},{"ghost", rows.r2}}
+        }
+    },
+    {
+        name = "E223",
+        elements = {
+            {{"pill", rows.r3}},
+            {{"pill", rows.r3}},
+            {{"ghost", rows.r3},{"pill", rows.r2}},
+            {{"pill", rows.r3},{"pill", rows.r2}},
+            {{"pill", rows.r3},{"ghost", rows.r2}}
+        }
+    },
+    {
+        name = "E31",
+        elements = {
+            {{"pill", rows.r3}},
+            {{"pill", rows.r3}},
+            {{"ghost", rows.r3},{"pill", rows.r2}},
+            {{"pill", rows.r3},{"pill", rows.r2},{"pill", rows.r1}},
+            {{"ghost", rows.r1},{"pill", rows.r2},{"ghost", rows.r3}}
+        }
+    },
+    {
+        name = "E32",
+        elements = {
+            {{"pill", rows.r1}},
+            {{"pill", rows.r1}},
+            {{"ghost", rows.r1},{"pill", rows.r2}},
+            {{"pill", rows.r3},{"pill", rows.r2},{"pill", rows.r1}},
+            {{"ghost", rows.r2},{"pill", rows.r3},{"ghost", rows.r2}}
         }
     }
 }

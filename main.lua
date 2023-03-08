@@ -66,8 +66,10 @@ function _update()
 					if (t.isScorable()) then
 						add(del_things, i)
 						points+=1
+						sfx(1,1)
 					else
 						gameover=true
+						sfx(2,1)
 					end
 				end
 			end
@@ -77,7 +79,7 @@ end
 
 function _draw()
 	if (gameover) then
-		--sfx(-1)
+		sfx(-1,0)
 		rectfill(23,47,105,67,12)
 		print("game over",45,50,8)
 		print("press ❎ to continue",25,60,8)
