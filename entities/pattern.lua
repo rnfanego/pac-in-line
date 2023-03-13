@@ -21,8 +21,12 @@ pattern = object:new({
                     add(aux, pill.create(127,e[2]))
                 end
 
-                if(e[1] == "ghost") then
-                    add(aux, ghost.create(127,e[2]))
+                if(e[1] == "red") then
+                    add(aux, red.create(127,e[2]))
+                end
+
+                if(e[1] == "pinky") then
+                    add(aux, pinky.create(127,e[2],true))
                 end
 
                 if (e[1] == "empty") then
@@ -63,7 +67,7 @@ compositions = {
             {{"pill", rows.r1}},
             {{"pill", rows.r1}},
             {{"pill", rows.r1}},
-            {{"ghost", rows.r1}}
+            {{"red", rows.r1}}
         }
     },
     {
@@ -73,7 +77,7 @@ compositions = {
             {{"pill", rows.r2}},
             {{"pill", rows.r2}},
             {{"pill", rows.r2}},
-            {{"ghost", rows.r2}}
+            {{"red", rows.r2}}
         }
     },
     {
@@ -83,7 +87,7 @@ compositions = {
             {{"pill", rows.r3}},
             {{"pill", rows.r3}},
             {{"pill", rows.r3}},
-            {{"ghost", rows.r3}}
+            {{"red", rows.r3}}
         }
     },
     {
@@ -91,9 +95,9 @@ compositions = {
         elements = {
             {{"pill", rows.r1}},
             {{"pill", rows.r1}},
-            {{"ghost", rows.r1},{"pill", rows.r2}},
+            {{"red", rows.r1},{"pill", rows.r2}},
             {{"pill", rows.r1},{"pill", rows.r2}},
-            {{"pill", rows.r1},{"ghost", rows.r2}}
+            {{"pill", rows.r1},{"red", rows.r2}}
         }
     },
     {
@@ -101,9 +105,9 @@ compositions = {
         elements = {
             {{"pill", rows.r3}},
             {{"pill", rows.r3}},
-            {{"ghost", rows.r3},{"pill", rows.r2}},
+            {{"red", rows.r3},{"pill", rows.r2}},
             {{"pill", rows.r3},{"pill", rows.r2}},
-            {{"pill", rows.r3},{"ghost", rows.r2}}
+            {{"pill", rows.r3},{"red", rows.r2}}
         }
     },
     {
@@ -111,9 +115,9 @@ compositions = {
         elements = {
             {{"pill", rows.r3}},
             {{"pill", rows.r3}},
-            {{"ghost", rows.r3},{"pill", rows.r2}},
+            {{"red", rows.r3},{"pill", rows.r2}},
             {{"pill", rows.r3},{"pill", rows.r2},{"pill", rows.r1}},
-            {{"ghost", rows.r1},{"pill", rows.r2},{"ghost", rows.r3}}
+            {{"red", rows.r1},{"pill", rows.r2},{"red", rows.r3}}
         }
     },
     {
@@ -121,9 +125,9 @@ compositions = {
         elements = {
             {{"pill", rows.r1}},
             {{"pill", rows.r1}},
-            {{"ghost", rows.r1},{"pill", rows.r2}},
+            {{"red", rows.r1},{"pill", rows.r2}},
             {{"pill", rows.r3},{"pill", rows.r2},{"pill", rows.r1}},
-            {{"ghost", rows.r2},{"pill", rows.r3},{"ghost", rows.r2}}
+            {{"red", rows.r2},{"pill", rows.r3},{"red", rows.r2}}
         }
     }
 }

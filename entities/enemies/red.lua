@@ -1,4 +1,4 @@
-ghost = object:new({
+red = object:new({
 	sprplus=5,
     w=7,
     h=8,
@@ -26,7 +26,7 @@ ghost = object:new({
 	end,
 
     create = function(x,y)
-        g = ghost:new({x=x,y=y})
+        g = red:new({x=x,y=y})
         g:init()
         return g
     end
