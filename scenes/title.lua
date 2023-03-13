@@ -12,5 +12,6 @@ title = object:new({
 	draw = function(self)
         spr(7, 30, 20, 8, 7)
         print("press ❎ to start",30,85,8)
+		print("⬆️ and ⬇️ to move the player",10,100,8)
 	end
 })
