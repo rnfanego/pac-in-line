@@ -59,6 +59,24 @@ rows = {
 	r3=68,
 }
 
+levels={
+    {
+        speed= 1.0,
+        compositions={
+
+        }
+    }
+}
+
+--block of compositions
+block = {
+    {},
+    {},
+    {},
+    {},
+    {}
+}
+
 compositions = {
     {
         name = "E11",
@@ -91,7 +109,7 @@ compositions = {
         }
     },
     {
-        name = "E212",
+        name = "E21",
         elements = {
             {{"pill", rows.r1}},
             {{"pill", rows.r1}},
@@ -101,7 +119,7 @@ compositions = {
         }
     },
     {
-        name = "E223",
+        name = "E22",
         elements = {
             {{"pill", rows.r3}},
             {{"pill", rows.r3}},

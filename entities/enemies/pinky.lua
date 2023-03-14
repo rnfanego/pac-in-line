@@ -42,7 +42,6 @@ pinky = object:new({
 	end,
 
 	draw = function(self)
-        --printh("pinky y "..self.y,"pac_in_line/log")
         spr(self.spr,self.x,self.y)
 	end,
 
@@ -53,6 +52,10 @@ pinky = object:new({
     isCollisionable = function(self)
         return true
 	end,
+
+    getPoints = function(self)
+        return 100
+    end,
 
     create = function(x,y,go_up)
         g = pinky:new({x=x,y=y,go_up=go_up})

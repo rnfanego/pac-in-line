@@ -40,9 +40,9 @@ game = object:new({
 			else
 				if (pac:collide(t)) then
 					--printh("type"..t.t,"pac_in_line/log")
-					if (t.isScorable()) then
+					if (t:isScorable()) then
 						add(del_things, i)
-						points+=1
+						points+=t:getPoints()
 						sfx(1,1)
 					else
                         current_scene = gameover

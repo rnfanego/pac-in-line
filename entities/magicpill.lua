@@ -1,9 +1,9 @@
-pill = object:new({
-    w=3,
-    h=2,
+magicpill = object:new({
+    w=4,
+    h=3,
     pill_type=0,
     init = function(self)
-        self.spr=18
+        self.spr=19
         self.t=pill_type
 	end,
 
@@ -24,11 +24,11 @@ pill = object:new({
 	end,
 
     getPoints = function(self)
-        return 1
+        return 10
     end,
 
     create = function(x,y)
-        p = pill:new({x=x,y=y})
+        p = magicpill:new({x=x,y=y})
         p:init()
         return p
     end

@@ -25,6 +25,10 @@ red = object:new({
         return true
 	end,
 
+    getPoints = function(self)
+        return 100
+    end,
+
     create = function(x,y)
         g = red:new({x=x,y=y})
         g:init()
