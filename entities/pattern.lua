@@ -62,90 +62,60 @@ rows = {
 levels={
     {
         speed= 1.0,
-        compositions={
-
+        blocks={
+            {{"E11"},{},{},{},{}}
         }
     }
 }
 
 --block of compositions
-block = {
-    {},
-    {},
-    {},
-    {},
-    {}
-}
+block = {{},{},{},{},{}}
 
-compositions = {
-    {
-        name = "E11",
+local function e1(r,name)
+    return {
+        name = name,
         elements = {
-            {{"pill", rows.r1}},
-            {{"pill", rows.r1}},
-            {{"pill", rows.r1}},
-            {{"pill", rows.r1}},
-            {{"red", rows.r1}}
-        }
-    },
-    {
-        name = "E12",
-        elements = {
-            {{"pill", rows.r2}},
-            {{"pill", rows.r2}},
-            {{"pill", rows.r2}},
-            {{"pill", rows.r2}},
-            {{"red", rows.r2}}
-        }
-    },
-    {
-        name = "E13",
-        elements = {
-            {{"pill", rows.r3}},
-            {{"pill", rows.r3}},
-            {{"pill", rows.r3}},
-            {{"pill", rows.r3}},
-            {{"red", rows.r3}}
-        }
-    },
-    {
-        name = "E21",
-        elements = {
-            {{"pill", rows.r1}},
-            {{"pill", rows.r1}},
-            {{"red", rows.r1},{"pill", rows.r2}},
-            {{"pill", rows.r1},{"pill", rows.r2}},
-            {{"pill", rows.r1},{"red", rows.r2}}
-        }
-    },
-    {
-        name = "E22",
-        elements = {
-            {{"pill", rows.r3}},
-            {{"pill", rows.r3}},
-            {{"red", rows.r3},{"pill", rows.r2}},
-            {{"pill", rows.r3},{"pill", rows.r2}},
-            {{"pill", rows.r3},{"red", rows.r2}}
-        }
-    },
-    {
-        name = "E31",
-        elements = {
-            {{"pill", rows.r3}},
-            {{"pill", rows.r3}},
-            {{"red", rows.r3},{"pill", rows.r2}},
-            {{"pill", rows.r3},{"pill", rows.r2},{"pill", rows.r1}},
-            {{"red", rows.r1},{"pill", rows.r2},{"red", rows.r3}}
-        }
-    },
-    {
-        name = "E32",
-        elements = {
-            {{"pill", rows.r1}},
-            {{"pill", rows.r1}},
-            {{"red", rows.r1},{"pill", rows.r2}},
-            {{"pill", rows.r3},{"pill", rows.r2},{"pill", rows.r1}},
-            {{"red", rows.r2},{"pill", rows.r3},{"red", rows.r2}}
+            {{"pill", r}},
+            {{"pill", r}},
+            {{"pill", r}},
+            {{"pill", r}},
+            {{"red", r}}
         }
     }
+end
+
+local function e2(r1,r2,name)
+    return {
+        name = "E21",
+        elements = {
+            {{"pill", r1}},
+            {{"pill", r1}},
+            {{"red", r1},{"pill", r2}},
+            {{"pill", r1},{"pill", r2}},
+            {{"pill", r1},{"red", r2}}
+        }
+    }
+end
+
+local function e3(r1,name)
+    return {
+        name = "E31",
+        elements = {
+            {{"pill", r1}},
+            {{"pill", r1}},
+            {{"pill", rows.r2},{"red", r1}},
+            {{"pill", rows.r1},{"pill", rows.r2},{"pill", rows.r3}},
+            {{"red", rows.r1},{"pill", rows.r2},{"red", rows.r3}}
+        }
+    }
+end
+
+compositions = {
+    e1(rows.r1, "E11"),
+    e1(rows.r2, "E12"),
+    e1(rows.r3, "E13"),
+    e2(rows.r1,rows.r2, "E21"),
+    e2(rows.r3,rows.r2, "E22"),
+    e3(rows.r3, "E31"),
+    e3(rows.r1, "E32")
 }
