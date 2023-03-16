@@ -13,6 +13,7 @@ __lua__
 #include entities/enemies/red.lua
 #include entities/enemies/pinky.lua
 #include entities/pill.lua
+#include entities/magicpill.lua
 #include entities/empty.lua
 #include entities/pattern_generator.lua
 #include entities/pattern.lua

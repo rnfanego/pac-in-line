@@ -7,15 +7,15 @@ pinky = object:new({
         self.initial_y=self.y
         self.frames=1
         if (self.go_up) then
-            self.spr=37
-            self.spraux=self.spr
-            self.sprnext = 21
-            self.sprdir = 1
-        else
             self.spr=21
             self.spraux=self.spr
             self.sprnext = 37
             self.sprdir = -1
+        else
+            self.spr=37
+            self.spraux=self.spr
+            self.sprnext = 21
+            self.sprdir = 1            
         end
 	end,
 
