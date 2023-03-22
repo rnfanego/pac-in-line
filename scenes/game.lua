@@ -16,8 +16,16 @@ game = object:new({
 		end
 		
 		for at in all(add_things) do
-			for a in all(at) do
-				add(things, a)
+			if(at[rows.r1] != nil) then
+				add(things, at[rows.r1])
+			end
+
+			if(at[rows.r2] != nil) then
+				add(things, at[rows.r2])
+			end
+
+			if(at[rows.r3] != nil) then
+				add(things, at[rows.r3])
 			end
 		end
 
