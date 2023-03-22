@@ -1,7 +1,7 @@
 pattern = object:new({
     init = function(self)
         self.things = {}
-        self:initialize(rnd(compositions))
+        self:initialize(compositions[rnd(compositions_keys)])
 	end,
 
     create = function()
@@ -55,10 +55,6 @@ pattern = object:new({
     is_empty = function(self)
         return count(self.things) == 0
     end,
-
-    get_things = function(self)
-        return self.things
-    end
 })
 
 rows = {
@@ -66,18 +62,6 @@ rows = {
 	r2=60,
 	r3=68,
 }
-
-levels={
-    {
-        speed= 1.0,
-        blocks={
-            {{"E11"},{},{},{},{}}
-        }
-    }
-}
-
---block of compositions
-block = {{},{},{},{},{}}
 
 local function e1(r,name)
     return {
@@ -218,37 +202,55 @@ local function i1(r1,r2,r3,p,name)
     }
 end
 
+superblocks={
+    SB1={
+        blocks={"B1","B2"},
+        spaces=2
+    }
+}
+
+blocks = {
+    B1={{"G13"},{"C11"},{"G12"},{},{}},
+    B2={{"F12"},{"J1"},{"F11"},{"J1"},{"F13"}}
+}
+
+compositions_keys={"I11","I12","H11","H12","A11","A12","A13","B21","B22","B23",
+                   "B11","B12","B13","C11","C12","C13","G11","G12","G13",
+                   "J1","F21","F22","F23","F11","F12","F13","E11","E12",
+                   "E13","E21","E31","E32"}
+
 compositions = {
-    i1(rows.r1,rows.r2,rows.r3, "pinky_up","I11"),
-    i1(rows.r3,rows.r2,rows.r1, "pinky_down","I12"),
-    h1(rows.r1,rows.r2, "pinky_up","H11"),
-    h1(rows.r3,rows.r2, "pinky_down","H12"),
-    a1(rows.r1, "A11"),
-    a1(rows.r2, "A12"),
-    a1(rows.r3, "A13"),
-    b2(rows.r1, "B21"),
-    b2(rows.r2, "B22"),
-    b2(rows.r3, "B23"),
-    b1(rows.r1, "B11"),
-    b1(rows.r2, "B12"),
-    b1(rows.r3, "B13"),
-    c1(rows.r1, "C11"),
-    c1(rows.r2, "C12"),
-    c1(rows.r3, "C13"),
-    g1(rows.r1, "G11"),
-    g1(rows.r2, "G12"),
-    g1(rows.r3, "G13"),
-    f1("magicpill","red","red","F21"),
-    f1("red","magicpill","red","F22"),
-    f1("red","red","magicpill","F23"),
-    f1("pill","red","red","F11"),
-    f1("red","pill","red","F12"),
-    f1("red","red","pill","F13"),
-    e1(rows.r1, "E11"),
-    e1(rows.r2, "E12"),
-    e1(rows.r3, "E13"),
-    e2(rows.r1,rows.r2, "E21"),
-    e2(rows.r3,rows.r2, "E22"),
-    e3(rows.r3, "E31"),
-    e3(rows.r1, "E32")
+    I11=i1(rows.r1,rows.r2,rows.r3, "pinky_up","I11"),
+    I12=i1(rows.r3,rows.r2,rows.r1, "pinky_down","I12"),
+    H11=h1(rows.r1,rows.r2, "pinky_up","H11"),
+    H12=h1(rows.r3,rows.r2, "pinky_down","H12"),
+    A11=a1(rows.r1, "A11"),
+    A12=a1(rows.r2, "A12"),
+    A13=a1(rows.r3, "A13"),
+    B21=b2(rows.r1, "B21"),
+    B22=b2(rows.r2, "B22"),
+    B23=b2(rows.r3, "B23"),
+    B11=b1(rows.r1, "B11"),
+    B12=b1(rows.r2, "B12"),
+    B13=b1(rows.r3, "B13"),
+    C11=c1(rows.r1, "C11"),
+    C12=c1(rows.r2, "C12"),
+    C13=c1(rows.r3, "C13"),
+    G11=g1(rows.r1, "G11"),
+    G12=g1(rows.r2, "G12"),
+    G13=g1(rows.r3, "G13"),
+    EMPTY_COL=f1("empty","empty","empty","EMPTY_COL"),
+    F21=f1("magicpill","red","red","F21"),
+    F22=f1("red","magicpill","red","F22"),
+    F23=f1("red","red","magicpill","F23"),
+    F11=f1("pill","red","red","F11"),
+    F12=f1("red","pill","red","F12"),
+    F13=f1("red","red","pill","F13"),
+    E11=e1(rows.r1, "E11"),
+    E12=e1(rows.r2, "E12"),
+    E13=e1(rows.r3, "E13"),
+    E21=e2(rows.r1,rows.r2, "E21"),
+    E22=e2(rows.r3,rows.r2, "E22"),
+    E31=e3(rows.r3, "E31"),
+    E32=e3(rows.r1, "E32")
 }

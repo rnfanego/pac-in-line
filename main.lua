@@ -5,7 +5,6 @@ function _init()
 	things={}
 	add_things={}
 	del_things={}
-	patterns = {}
 	current_scene=title
 	current_scene.init()
 	

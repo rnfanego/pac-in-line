@@ -44,6 +44,10 @@ game = object:new({
 						add(del_things, i)
 						points+=t:getPoints()
 						sfx(1,1)
+
+						if(current_level:isFinished(points)) then
+							current_level = current_level:next()
+						end
 					else
                         current_scene = gameover
                         gameover.init()
@@ -89,6 +93,9 @@ function initialstate()
 	add_things={}
 	del_things={}
 	points=0
+	current_level=level.create(1)
+	sprspeed*=current_level:getSpeed()
+	current_road=road.create(current_level)
 	pac:init()
 	patternGenerator:init()
 	add(add_things, patternGenerator:get_thing())
