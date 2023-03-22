@@ -28,7 +28,7 @@ road = object:new({
 		end
 		
 		for i=1,superblock.spaces do
-			self:addPattern(compositions.EMPTY_COL)
+			self:addPattern(patterns_definitions.EMPTY_COL)
 		end
 	end,
 

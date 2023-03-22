@@ -1,7 +1,7 @@
 pattern = object:new({
     init = function(self)
         self.things = {}
-        self:initialize(compositions[rnd(compositions_keys)])
+        self:initialize(patterns_definitions[rnd(patterns_keys)])
 	end,
 
     create = function()
@@ -10,8 +10,8 @@ pattern = object:new({
         return p
     end,
 
-    initialize = function(self, composition)
-        local elements = composition.elements
+    initialize = function(self, pattern_definition)
+        local elements = pattern_definition.elements
         for i=1,#elements do
             local es = elements[i]
             --printh("composition elements"..#b.elements,"pac_in_line/log")
@@ -214,12 +214,12 @@ blocks = {
     B2={{"F12"},{"J1"},{"F11"},{"J1"},{"F13"}}
 }
 
-compositions_keys={"I11","I12","H11","H12","A11","A12","A13","B21","B22","B23",
+patterns_keys={"I11","I12","H11","H12","A11","A12","A13","B21","B22","B23",
                    "B11","B12","B13","C11","C12","C13","G11","G12","G13",
                    "J1","F21","F22","F23","F11","F12","F13","E11","E12",
                    "E13","E21","E31","E32"}
 
-compositions = {
+patterns_definitions = {
     I11=i1(rows.r1,rows.r2,rows.r3, "pinky_up","I11"),
     I12=i1(rows.r3,rows.r2,rows.r1, "pinky_down","I12"),
     H11=h1(rows.r1,rows.r2, "pinky_up","H11"),
