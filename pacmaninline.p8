@@ -15,7 +15,6 @@ __lua__
 #include entities/pill.lua
 #include entities/magicpill.lua
 #include entities/empty.lua
-#include entities/pattern_generator.lua
 #include entities/pattern.lua
 #include entities/level.lua
 #include entities/road.lua

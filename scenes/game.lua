@@ -17,7 +17,6 @@ game = object:new({
 		end
 		
 		for at in all(add_things) do
-			--printh("add_things"..tostr(#at),"pac_in_line/log")
 			if(at[rows.r1] != nil) then
 				add(things, at[rows.r1])
 			end
@@ -107,7 +106,5 @@ function initialstate()
 	sprspeed*=current_level:getSpeed()
 	current_road=road.create(current_level)
 	pac:init()
-	--patternGenerator:init()
-	--add(add_things, patternGenerator:get_thing())
 	add(add_things, current_road:getColumn())
 end
