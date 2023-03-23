@@ -11,9 +11,9 @@ level = object:new({
         {
             name="Level 2",
             speed= 1.2,
-            superblocks={"SB1"},
+            superblocks={"SB2"},
             connector="",
-            finishable=true,
+            finishable=false,
             finished_score=100
         }
     },
@@ -33,7 +33,7 @@ level = object:new({
     end,
 
     next = function(self)
-        if (self.self.finishable) then
+        if (self.finishable) then
             return level.create(self.number+1)
         end
         return self

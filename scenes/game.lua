@@ -56,6 +56,8 @@ game = object:new({
 
 						if(current_level:isFinished(points)) then
 							current_level = current_level:next()
+							current_road=road.create(current_level)
+							sprspeed=10.0*current_level:getSpeed()
 						end
 					else
                         current_scene = gameover
@@ -83,6 +85,7 @@ end
 
 function print_values()
 	print("points: "..points)
+	print(""..current_level.name,100,0)
 end
 
 function button_selection()
@@ -103,7 +106,7 @@ function initialstate()
 	del_things={}
 	points=0
 	current_level=level.create(1)
-	sprspeed*=current_level:getSpeed()
+	sprspeed=10.0*current_level:getSpeed()
 	current_road=road.create(current_level)
 	pac:init()
 	add(add_things, current_road:getColumn())

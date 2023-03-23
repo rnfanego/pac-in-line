@@ -211,8 +211,13 @@ rows = {
 
 superblocks={
     SB1={
-        blocks={"B1","B2"},
-        --blocks={"B1"},
+        --blocks={"B1","B2"},
+        blocks={"B1"},
+        spaces=2
+    },
+    SB2={
+        --blocks={"B1","B2"},
+        blocks={"B2"},
         spaces=2
     }
 }
