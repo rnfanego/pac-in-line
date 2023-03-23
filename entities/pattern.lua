@@ -258,3 +258,5 @@ patterns_definitions = {
     E31=e3(rows.r3, "E31"),
     E32=e3(rows.r1, "E32")
 }
+
+EMPTY_COL = pattern.createWithPattern(patterns_definitions.EMPTY_COL)

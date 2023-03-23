@@ -27,7 +27,7 @@ road = object:new({
 		end
 		
 		for i=1,superblock.spaces do
-			self:addPattern(patterns_definitions.EMPTY_COL)
+			self:addPattern(EMPTY_COL)
 		end
 	end,
 
@@ -48,15 +48,18 @@ road = object:new({
 					end
 					
 					if(t[rows.r1] != nil) then
-						add(column, t[rows.r1])
+						column[rows.r1] = t[rows.r1] 
+						--add(column, t[rows.r1])
 					end
 		
 					if(t[rows.r2] != nil) then
-						add(column, t[rows.r2])
+						column[rows.r2] = t[rows.r2] 
+						--add(column, t[rows.r2])
 					end
 		
 					if(t[rows.r3] != nil) then
-						add(column, t[rows.r3])
+						column[rows.r3] = t[rows.r3] 
+						--add(column, t[rows.r3])
 					end
 
 					t=p.get_thing()
@@ -67,6 +70,7 @@ road = object:new({
 		end
 	end,
 
-	addPattern = function(self,pattern)
+	addPattern = function(self,aPattern)
+		--seguir aca
 	end
 })
