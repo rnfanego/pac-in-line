@@ -6,6 +6,7 @@ game = object:new({
 
 	update = function(self)
         pac:update()
+		road:update()
 		
 		button_selection()
 
