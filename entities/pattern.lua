@@ -51,6 +51,9 @@ pattern = object:new({
     end,
 
     get_thing = function(self)
+        if (count(self.things)==0)then
+            return nil
+        end
         local t = self.things[1]
         deli(self.things,1)
         return t

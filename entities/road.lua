@@ -6,8 +6,8 @@ road = object:new({
 	end,
 	init = function(self)
 		self.connectorGenerated=false
-		--self.columns=self:generateColumns(self.current_level.connector)
-		--add(self.columns, self:generateColumns(rnd(self.current_level.superblocks)))
+		self.columns=self:generateColumns(self.current_level.connector)
+		add(self.columns, self:generateColumns(rnd(self.current_level.superblocks)))
 	end,
 
 	update = function(self)
@@ -33,11 +33,11 @@ road = object:new({
 		local superblock = superblocks[sbkey]
 
 		for block in all(superblock.blocks) do			
-			add(self:addBlock(block),columns)
+			add(self:addBlock(blocks[block]),columns)
 		end
 		
 		for i=1,superblock.spaces do
-			add(self:addPattern(EMPTY_COL),columns)
+			add(self:addPattern(EMPTY_COL,1),columns)
 		end
 	end,
 
@@ -45,11 +45,14 @@ road = object:new({
 		local columns = {}
 		local initial_column = 1
 		for e in all(aBlock) do
-			for pdef in all(e) do
-				local p = pattern.createWithPattern(patterns_definitions[pdef])
-
-				add(self:addPattern(p,initial_column),columns)
+			if(#e > 0) then
+				for pdef in all(e) do
+					local p = pattern.createWithPattern(patterns_definitions[pdef])
+	
+					add(self:addPattern(p,initial_column),columns)
+				end
 			end
+			
 			initial_column+=1
 		end
 		return columns
@@ -60,7 +63,7 @@ road = object:new({
 
 		local j = initialValue
 
-		t=p.get_thing()
+		t=aPattern:get_thing()
 		while (t != nil) do
 			local column = columns[j]
 			if (column == nil) then
@@ -83,7 +86,7 @@ road = object:new({
 				--add(column, t[rows.r3])
 			end
 
-			t=p.get_thing()
+			t=aPattern:get_thing()
 			j+=1
 		end
 
