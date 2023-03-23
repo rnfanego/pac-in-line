@@ -6,7 +6,7 @@ game = object:new({
 
 	update = function(self)
         pac:update()
-		road:update()
+		current_road:update()
 		
 		button_selection()
 
@@ -17,6 +17,7 @@ game = object:new({
 		end
 		
 		for at in all(add_things) do
+			--printh("add_things"..tostr(#at),"pac_in_line/log")
 			if(at[rows.r1] != nil) then
 				add(things, at[rows.r1])
 			end
@@ -40,7 +41,7 @@ game = object:new({
 			t:update()
 			
 			if (t.x == 115 and not generated) then
-				add(add_things, patternGenerator:get_thing())
+				add(add_things, current_road:getColumn())
 				generated = true
 			end
 			
@@ -106,6 +107,7 @@ function initialstate()
 	sprspeed*=current_level:getSpeed()
 	current_road=road.create(current_level)
 	pac:init()
-	patternGenerator:init()
-	add(add_things, patternGenerator:get_thing())
+	--patternGenerator:init()
+	--add(add_things, patternGenerator:get_thing())
+	add(add_things, current_road:getColumn())
 end

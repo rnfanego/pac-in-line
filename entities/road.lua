@@ -5,14 +5,15 @@ road = object:new({
 		return r
 	end,
 	init = function(self)
-		self.connectorGenerated=false
 		self.columns=self:generateColumns(self.current_level.connector)
-		add(self.columns, self:generateColumns(rnd(self.current_level.superblocks)))
+		for c in all(self:generateColumns(rnd(self.current_level.superblocks))) do
+			add(self.columns,c)
+		end	
 	end,
 
 	update = function(self)
 		if (count(self.columns) == 0) then
-			add(self.columns, self:generateColumns(rnd(self.current_level.superblocks)))
+			self.columns=self:generateColumns(rnd(self.current_level.superblocks))
 		end
 	end,
 
@@ -27,18 +28,25 @@ road = object:new({
 
 	generateColumns=function(self,sbkey)
 		local columns = {}
-		if (sbkey == nil) then
+		if (sbkey == nil or sbkey == "") then
 			return {}
 		end
 		local superblock = superblocks[sbkey]
 
-		for block in all(superblock.blocks) do			
-			add(self:addBlock(blocks[block]),columns)
+		for block in all(superblock.blocks) do	
+			for c in all(self:addBlock(blocks[block])) do
+				add(columns,c)
+			end
+			
+			for i=1,superblock.spaces do
+				local e = self:addPattern(pattern.createWithPattern(patterns_definitions.EMPTY_COL),1)
+				for c in all(e) do
+					add(columns,c)
+				end		
+			end
 		end
-		
-		for i=1,superblock.spaces do
-			add(self:addPattern(EMPTY_COL,1),columns)
-		end
+
+		return columns
 	end,
 
 	addBlock = function(self,aBlock)
@@ -48,8 +56,33 @@ road = object:new({
 			if(#e > 0) then
 				for pdef in all(e) do
 					local p = pattern.createWithPattern(patterns_definitions[pdef])
-	
-					add(self:addPattern(p,initial_column),columns)
+					local j = initial_column
+					t=p:get_thing()
+					while (t != nil) do
+						local column = columns[j]
+						if (column == nil) then
+							column = {}
+						end
+						
+						if(t[rows.r1] != nil) then
+							column[rows.r1] = t[rows.r1] 
+						end
+
+						if(t[rows.r2] != nil) then
+							column[rows.r2] = t[rows.r2] 
+						end
+
+						if(t[rows.r3] != nil) then
+							column[rows.r3] = t[rows.r3] 
+						end
+
+						if (columns[j] == nil) then
+							add(columns,column,j)
+						end
+
+						t=p:get_thing()
+						j+=1
+					end
 				end
 			end
 			
@@ -68,28 +101,27 @@ road = object:new({
 			local column = columns[j]
 			if (column == nil) then
 				column = {}
-				add(column,columns)
 			end
 			
 			if(t[rows.r1] != nil) then
 				column[rows.r1] = t[rows.r1] 
-				--add(column, t[rows.r1])
 			end
 
 			if(t[rows.r2] != nil) then
 				column[rows.r2] = t[rows.r2] 
-				--add(column, t[rows.r2])
 			end
 
 			if(t[rows.r3] != nil) then
 				column[rows.r3] = t[rows.r3] 
-				--add(column, t[rows.r3])
+			end
+
+			if (columns[j] == nil) then
+				add(columns,column)
 			end
 
 			t=aPattern:get_thing()
 			j+=1
 		end
-
 		return columns
 	end
 })

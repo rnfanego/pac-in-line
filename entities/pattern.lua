@@ -212,6 +212,7 @@ rows = {
 superblocks={
     SB1={
         blocks={"B1","B2"},
+        --blocks={"B1"},
         spaces=2
     }
 }
