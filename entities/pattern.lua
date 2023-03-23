@@ -212,8 +212,8 @@ rows = {
 superblocks={
     SB1={
         --blocks={"B1","B2"},
-        blocks={"B1"},
-        spaces=2
+        blocks={"B9","B7","B4","B5","B6"},
+        spaces=1
     },
     SB2={
         --blocks={"B1","B2"},
@@ -222,9 +222,18 @@ superblocks={
     }
 }
 
+--{{},{},{},{},{}}
+
 blocks = {
     B1={{"G13"},{"C11"},{"G12"},{},{}},
-    B2={{"F12"},{"EMPTY_COL"},{"F11"},{"EMPTY_COL"},{"F13"}}
+    B2={{"F12"},{"EMPTY_COL"},{"F11"},{"EMPTY_COL"},{"F13"}},
+    B3={{"G11","C13"},{},{"G12"},{},{}},
+    B4={{"E12"},{},{},{"E11"},{}},
+    B5={{"E13"},{},{},{"E12"},{}},
+    B6={{"B22"},{},{"E11"},{},{}},
+    B7={{"E13"},{},{"B12"},{},{}},
+    B8={{"E11"},{},{"B12"},{},{}},
+    B9={{"F13"},{"EMPTY_COL"},{"F13"},{"EMPTY_COL"},{"F31"}}
 }
 
 patterns_keys={"I11","I12","H11","H12","A11","A12","A13","B21","B22","B23",
@@ -253,6 +262,8 @@ patterns_definitions = {
     G12=g1(rows.r2, "G12"),
     G13=g1(rows.r3, "G13"),
     EMPTY_COL=f1("empty","empty","empty","EMPTY_COL"),
+    F31=f1("magicpill","red","pill","F31"),
+    F32=f1("pill","red","magicpill","F32"),
     F21=f1("magicpill","red","red","F21"),
     F22=f1("red","magicpill","red","F22"),
     F23=f1("red","red","magicpill","F23"),
@@ -267,5 +278,3 @@ patterns_definitions = {
     E31=e3(rows.r3, "E31"),
     E32=e3(rows.r1, "E32")
 }
-
-EMPTY_COL = pattern.createWithPattern(patterns_definitions.EMPTY_COL)
