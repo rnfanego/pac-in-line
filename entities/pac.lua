@@ -6,7 +6,7 @@ pac = object:new({
 
     init = function(self)
         self.x=24
-	    self.y=52
+	    self.y=rows.r2
         self.spr=1
     end,
 

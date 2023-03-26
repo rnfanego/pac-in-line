@@ -125,15 +125,15 @@ local function g1(r,name)
     }
 end
 
-local function c1(r,name)
+local function c1(r,t,name)
     return {
         name = name,
         elements = {
-            {{"red", r}},
-            {{"red", r}},
-            {{"red", r}},
-            {{"red", r}},
-            {{"red", r}}
+            {{t, r}},
+            {{t, r}},
+            {{t, r}},
+            {{t, r}},
+            {{t, r}}
         }
     }
 end
@@ -203,6 +203,19 @@ local function i1(r1,r2,r3,p,name)
     }
 end
 
+local function e2(r1,r2,name)
+    return {
+        name = name,
+        elements = {
+            {{"pill", r1}},
+            {{"pill", r1}},
+            {{"red", r1},{"pill", r2}},
+            {{"pill", r1},{"pill", r2}},
+            {{"pill", r1},{"red", r2}}
+        }
+    }
+end
+
 rows = {
     r1=52,
 	r2=60,
@@ -210,15 +223,29 @@ rows = {
 }
 
 superblocks={
-    SB1={
-        --blocks={"B1","B2"},
-        blocks={"B9","B7","B4","B5","B6"},
+    SB11={
+        blocks={"B4","B5"},
         spaces=1
     },
-    SB2={
-        --blocks={"B1","B2"},
-        blocks={"B2"},
-        spaces=2
+    SB12={
+        blocks={"B13","B11"},
+        spaces=1
+    },
+    SB13={
+        blocks={"B14","B12"},
+        spaces=1
+    },
+    SB21={
+        blocks={"B16","B17"},
+        spaces=1
+    },
+    SBC1={
+        blocks={"BC1"},
+        spaces=1
+    },
+    SBC2={
+        blocks={"BC2"},
+        spaces=1
     }
 }
 
@@ -233,7 +260,17 @@ blocks = {
     B6={{"B22"},{},{"E11"},{},{}},
     B7={{"E13"},{},{"B12"},{},{}},
     B8={{"E11"},{},{"B12"},{},{}},
-    B9={{"F13"},{"EMPTY_COL"},{"F13"},{"EMPTY_COL"},{"F31"}}
+    B9={{"F13"},{"EMPTY_COL"},{"F13"},{"EMPTY_COL"},{"F31"}},
+    B10={{"G12"},{},{"E11"},{},{"B23"}},
+    B11={{"F13"},{"EMPTY_COL"},{"E12"},{},{"G13"}},
+    B12={{"E11"},{"C13"},{},{"E12"},{}},
+    B13={{"C22"},{},{},{},{"E11"}},
+    B14={{"C23"},{},{},{},{"E12"}},
+    B15={{"C22"},{},{},{},{"E13"}},
+    B16={{"E22"},{"G11"},{},{},{}},
+    B17={{"E31"},{},{},{},{}},
+    BC1={{"C11","C22","C13"},{},{},{},{}},
+    BC2={{"B11","C22","B23"},{},{},{},{}}
 }
 
 patterns_keys={"I11","I12","H11","H12","A11","A12","A13","B21","B22","B23",
@@ -255,9 +292,12 @@ patterns_definitions = {
     B11=b1(rows.r1, "B11"),
     B12=b1(rows.r2, "B12"),
     B13=b1(rows.r3, "B13"),
-    C11=c1(rows.r1, "C11"),
-    C12=c1(rows.r2, "C12"),
-    C13=c1(rows.r3, "C13"),
+    C11=c1(rows.r1, "red", "C11"),
+    C12=c1(rows.r2, "red", "C12"),
+    C13=c1(rows.r3, "red", "C13"),
+    C21=c1(rows.r1, "pill", "C21"),
+    C22=c1(rows.r2, "pill", "C22"),
+    C23=c1(rows.r3, "pill", "C23"),
     G11=g1(rows.r1, "G11"),
     G12=g1(rows.r2, "G12"),
     G13=g1(rows.r3, "G13"),
