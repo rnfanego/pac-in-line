@@ -3,7 +3,7 @@ empty = object:new({
 	end,
 
 	update = function(self)
-        self.x-=(1*current_level:getSpeed())
+        self.x-=(current_level:getSpeed())
 	end,
 
 	draw = function(self)

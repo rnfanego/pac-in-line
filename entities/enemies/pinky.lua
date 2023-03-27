@@ -20,7 +20,7 @@ pinky = object:new({
 	end,
 
 	update = function(self)
-        self.x-=(1*current_level:getSpeed())
+        self.x-=(current_level:getSpeed())
         self.frames+=1
         
         if(self.frames == 25 or self.frames == 55) then
@@ -30,7 +30,7 @@ pinky = object:new({
         end
 
         if(self.frames == 30 or self.frames == 60) then
-            self.y = self.y + (8 * self.sprdir)
+            self.y = self.y + (8 * self.sprdir * current_level:getSpeed())
             self.sprdir *= -1
         end
 
