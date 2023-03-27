@@ -39,7 +39,7 @@ game = object:new({
 			
 			t:update()
 			
-			if (t.x == 115 and not generated) then
+			if (t.x >= 115 and t.x <= 116 and not generated) then
 				add(add_things, current_road:getColumn())
 				generated = true
 			end
@@ -57,7 +57,6 @@ game = object:new({
 						if(current_level:isFinished(points)) then
 							current_level = current_level:next()
 							current_road=road.create(current_level)
-							sprspeed=10.0*current_level:getSpeed()
 						end
 					else
                         current_scene = gameover
@@ -105,8 +104,8 @@ function initialstate()
 	add_things={}
 	del_things={}
 	points=0
-	current_level=level.create(1)
-	sprspeed=10.0*current_level:getSpeed()
+	current_level=level.create(2)
+	sprspeed=10.0
 	current_road=road.create(current_level)
 	pac:init()
 	add(add_things, current_road:getColumn())

@@ -20,7 +20,7 @@ pinky = object:new({
 	end,
 
 	update = function(self)
-        self.x-=1
+        self.x-=(1*current_level:getSpeed())
         self.frames+=1
         
         if(self.frames == 25 or self.frames == 55) then

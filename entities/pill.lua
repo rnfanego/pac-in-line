@@ -8,7 +8,7 @@ pill = object:new({
 	end,
 
 	update = function(self)
-        self.x-=1
+        self.x-=(1*current_level:getSpeed())
 	end,
 
 	draw = function(self)

@@ -22,27 +22,27 @@ pattern = object:new({
             local aux = {}
             for e in all(es) do
                 if(e[1] == "pill") then
-                    aux[e[2]]=pill.create(127,e[2])
+                    aux[e[2]]=pill.create(127.0,e[2])
                 end
 
                 if(e[1] == "magicpill") then
-                    aux[e[2]]=magicpill.create(127,e[2])
+                    aux[e[2]]=magicpill.create(127.0,e[2])
                 end
 
                 if(e[1] == "red") then
-                    aux[e[2]]=red.create(127,e[2])
+                    aux[e[2]]=red.create(127.0,e[2])
                 end
 
                 if(e[1] == "pinky_up") then
-                    aux[e[2]]=pinky.create(127,e[2],true)
+                    aux[e[2]]=pinky.create(127.0,e[2],true)
                 end
 
                 if(e[1] == "pinky_down") then
-                    aux[e[2]]=pinky.create(127,e[2],false)
+                    aux[e[2]]=pinky.create(127.0,e[2],false)
                 end
 
                 if (e[1] == "empty") then
-                    aux[e[2]]=empty.create(127,e[2])
+                    aux[e[2]]=empty.create(127.0,e[2])
                 end
             end
 
@@ -239,6 +239,18 @@ superblocks={
         blocks={"B16","B17"},
         spaces=1
     },
+    SB22={
+        blocks={"B20","B19","B18"},
+        spaces=1
+    },
+    SB23={
+        blocks={"B3","B2"},
+        spaces=1
+    },
+    SB24={
+        blocks={"B10","B9"},
+        spaces=1
+    },
     SBC1={
         blocks={"BC1"},
         spaces=1
@@ -261,7 +273,7 @@ blocks = {
     B7={{"E13"},{},{"B12"},{},{}},
     B8={{"E11"},{},{"B12"},{},{}},
     B9={{"F13"},{"EMPTY_COL"},{"F13"},{"EMPTY_COL"},{"F31"}},
-    B10={{"G12"},{},{"E11"},{},{"B23"}},
+    B10={{"B22"},{},{"E11"},{},{"C13"}},
     B11={{"F13"},{"EMPTY_COL"},{"E12"},{},{"G13"}},
     B12={{"E11"},{"C13"},{},{"E12"},{}},
     B13={{"C22"},{},{},{},{"E11"}},
@@ -269,6 +281,9 @@ blocks = {
     B15={{"C22"},{},{},{},{"E13"}},
     B16={{"E22"},{"G11"},{},{},{}},
     B17={{"E31"},{},{},{},{}},
+    B18={{"B23"},{},{"E32"},{},{}},
+    B19={{"G12"},{},{},{"H12"},{"C11"}},
+    B20={{"F13"},{"EMPTY_COL"},{"F11"},{"EMPTY_COL"},{"H11","G13"}},
     BC1={{"C11","C22","C13"},{},{},{},{}},
     BC2={{"B11","C22","B23"},{},{},{},{}}
 }

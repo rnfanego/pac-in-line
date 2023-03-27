@@ -9,7 +9,7 @@ red = object:new({
 	end,
 
 	update = function(self)
-        self.x-=1
+        self.x-=(1*current_level:getSpeed())
         self.spr=alternate(self.sprplus, sprspeed, 2)
 	end,
 
