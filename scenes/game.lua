@@ -17,6 +17,7 @@ game = object:new({
 		end
 		
 		for at in all(add_things) do
+			col_count+=1
 			if(at[rows.r1] != nil) then
 				add(things, at[rows.r1])
 			end
@@ -39,7 +40,7 @@ game = object:new({
 			
 			t:update()
 			
-			if (t.x >= 115 and t.x <= 116 and not generated) then
+			if ((t.x >= 115 and t.x < 116) and not generated) then
 				add(add_things, current_road:getColumn())
 				generated = true
 			end
@@ -54,7 +55,7 @@ game = object:new({
 						points+=t:getPoints()
 						t:playSound()
 
-						if(current_level:isFinished(points)) then
+						if(current_level:isFinished(points,col_count)) then
 							current_level = current_level:next()
 							current_road=road.create(current_level)
 						end
@@ -85,6 +86,7 @@ end
 function print_values()
 	print("points: "..points)
 	print(""..current_level.name,100,0)
+	print("col_count: "..col_count,75,10)
 end
 
 function button_selection()
@@ -104,9 +106,10 @@ function initialstate()
 	add_things={}
 	del_things={}
 	points=0
-	current_level=level.create(2)
+	current_level=level.create(1)
 	sprspeed=10.0
 	current_road=road.create(current_level)
+	col_count=0
 	pac:init()
 	add(add_things, current_road:getColumn())
 end
