@@ -52,7 +52,7 @@ game = object:new({
 					if (t:isScorable()) then
 						add(del_things, i)
 						points+=t:getPoints()
-						sfx(1,1)
+						t:playSound()
 
 						if(current_level:isFinished(points)) then
 							current_level = current_level:next()

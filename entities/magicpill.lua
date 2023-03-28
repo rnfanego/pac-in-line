@@ -27,6 +27,10 @@ magicpill = object:new({
         return 10
     end,
 
+    playSound = function(self)
+        sfx(3,1)
+    end,
+
     create = function(x,y)
         p = magicpill:new({x=x,y=y})
         p:init()

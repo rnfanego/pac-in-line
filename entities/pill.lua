@@ -27,6 +27,10 @@ pill = object:new({
         return 1
     end,
 
+    playSound = function(self)
+        sfx(1,1)
+    end,
+
     create = function(x,y)
         p = pill:new({x=x,y=y})
         p:init()
