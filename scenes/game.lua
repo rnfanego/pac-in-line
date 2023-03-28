@@ -87,7 +87,25 @@ function print_values()
 	print("points: "..points)
 	print(""..current_level.name,100,0)
 	print("col_count: "..col_count,75,10)
+	if (powerup_on) then
+		ttimer=time()/4%1
+		current_timer=flr(lerp(7,0,ttimer))
+
+		pvalue=power_initial_value-(powerup_timer-current_timer)
+
+		if(pvalue>0)then
+			print("POWER UP *ON*: "..pvalue,25,35)
+		else
+			powerup_on=false
+		end
+		
+	end
 end
+
+function lerp(A, B, t)
+	--return A*(1-t) + B*t
+	return A + (B-A)*t
+ end
 
 function button_selection()
 	if(btn(⬅️)) then
@@ -106,10 +124,13 @@ function initialstate()
 	add_things={}
 	del_things={}
 	points=0
-	current_level=level.create(1)
+	current_level=level.create(2)
 	sprspeed=10.0
 	current_road=road.create(current_level)
 	col_count=0
+	powerup_on=false
+	powerup_timer=nil
+	power_initial_value=5
 	pac:init()
 	add(add_things, current_road:getColumn())
 end

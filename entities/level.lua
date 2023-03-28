@@ -12,7 +12,8 @@ level = object:new({
         {
             name="Level 2",
             speed=1.3,
-            superblocks={"SB21","SB22","SB23","SB24"},
+            superblocks={"SB24"},
+            --superblocks={"SB21","SB22","SB23","SB24"},
             connector="SBC2",
             finishable=true,
             finished_score=100,

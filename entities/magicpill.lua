@@ -24,6 +24,8 @@ magicpill = object:new({
 	end,
 
     getPoints = function(self)
+        powerup_timer=flr(lerp(7,0,time()/4%1))
+        powerup_on=true
         return 10
     end,
 
