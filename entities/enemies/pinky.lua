@@ -30,7 +30,7 @@ pinky = object:new({
         end
 
         if(self.frames == 30 or self.frames == 60) then
-            self.y = self.y + (8 * self.sprdir * current_level:getSpeed())
+            self.y = self.y + (8 * self.sprdir)
             self.sprdir *= -1
         end
 

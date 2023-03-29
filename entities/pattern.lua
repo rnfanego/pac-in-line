@@ -190,6 +190,19 @@ local function h1(r1,r2,p,name)
     }
 end
 
+local function h2(r1,r2,p,name)
+    return {
+        name = name,
+        elements = {
+            {{"red", r1}},
+            {{"pill", r1}},
+            {{"pill", r1}},
+            {{p, r2}},
+            {{"pill", r1}}
+        }
+    }
+end
+
 local function i1(r1,r2,r3,p,name)
     return {
         name = name,
@@ -251,12 +264,28 @@ superblocks={
         blocks={"B10","B9"},
         spaces=1
     },
+    SB31={
+        blocks={"B22","B21","B19"},
+        spaces=1
+    },
+    SB32={
+        blocks={"B23","B25","B20"},
+        spaces=1
+    },
+    SB33={
+        blocks={"B24","B26","B27"},
+        spaces=1
+    },
     SBC1={
         blocks={"BC1"},
         spaces=1
     },
     SBC2={
         blocks={"BC2"},
+        spaces=1
+    },
+    SBC3={
+        blocks={"BC3"},
         spaces=1
     }
 }
@@ -284,8 +313,16 @@ blocks = {
     B18={{"B23"},{},{"E32"},{},{}},
     B19={{"G12"},{},{},{"H12"},{"C11"}},
     B20={{"F13"},{"EMPTY_COL"},{"F11"},{"EMPTY_COL"},{"H11","G13"}},
-    BC1={{"C11","C22","C13"},{},{},{},{}},
-    BC2={{"B11","C22","B23"},{},{},{},{}}
+    B21={{"F11"},{"EMPTY_COL"},{"F11"},{"EMPTY_COL"},{"I11"}},
+    B22={{"F11"},{"EMPTY_COL"},{"F12"},{"E21"},{"G13"}},
+    B23={{"F11"},{"EMPTY_COL"},{"F12"},{"EMPTY_COL"},{"I12"}},
+    B24={{"F11"},{"EMPTY_COL"},{"F13"},{"EMPTY_COL"},{"F31"}},
+    B25={{"E11"},{},{"B22","E13"},{},{}},
+    B26={{"B22"},{"E13"},{"E11"},{},{}},
+    B27={{"F12"},{"EMPTY_COL"},{"F12"},{"EMPTY_COL"},{"G12"}},
+    BC1={{"EMPTY_COL"},{"C11","C22","C13"},{},{},{}},
+    BC2={{"EMPTY_COL"},{"B11","C22","B23"},{},{},{}},
+    BC3={{"EMPTY_COL"},{"H21","C13"},{},{},{}}
 }
 
 patterns_keys={"I11","I12","H11","H12","A11","A12","A13","B21","B22","B23",
@@ -298,6 +335,8 @@ patterns_definitions = {
     I12=i1(rows.r3,rows.r2,rows.r1, "pinky_down","I12"),
     H11=h1(rows.r1,rows.r2, "pinky_up","H11"),
     H12=h1(rows.r3,rows.r2, "pinky_down","H12"),
+    H21=h2(rows.r1,rows.r2, "pinky_up","H21"),
+    H22=h2(rows.r3,rows.r2, "pinky_down","H22"),
     A11=a1(rows.r1, "A11"),
     A12=a1(rows.r2, "A12"),
     A13=a1(rows.r3, "A13"),

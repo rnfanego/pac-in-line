@@ -7,26 +7,25 @@ level = object:new({
             connector="SBC1",
             finishable=true,
             finished_score=50,
-            finished_col_count=20
+            finished_col_count=100
         },
         {
             name="Level 2",
             speed=1.3,
-            superblocks={"SB24"},
-            --superblocks={"SB21","SB22","SB23","SB24"},
+            superblocks={"SB21","SB22","SB23","SB24"},
             connector="SBC2",
             finishable=true,
             finished_score=100,
-            finished_col_count=250
+            finished_col_count=200
         },
         {
             name="Level 3",
             speed=1.6,
-            superblocks={"SB21","SB22"},
-            connector="SBC2",
+            superblocks={"SB23","SB31","SB32","SB33"},
+            connector="SBC3",
             finishable=false,
             finished_score=100,
-            finished_col_count=350
+            finished_col_count=300
         }
     },
 	init = function(self)

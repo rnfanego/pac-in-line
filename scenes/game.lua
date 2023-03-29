@@ -139,7 +139,7 @@ function initialstate()
 	add_things={}
 	del_things={}
 	points=0
-	current_level=level.create(2)
+	current_level=level.create(1)
 	sprspeed=10.0
 	current_road=road.create(current_level)
 	col_count=0
