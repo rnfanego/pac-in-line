@@ -10,7 +10,11 @@ red = object:new({
 
 	update = function(self)
         self.x-=(current_level:getSpeed())
-        self.spr=alternate(self.sprplus, sprspeed, 2)
+        if(powerup_on)then
+            self.spr=alternate(magicghostspr, sprspeed, 2)
+        else
+            self.spr=alternate(self.sprplus, sprspeed, 2)
+        end
 	end,
 
 	draw = function(self)
@@ -18,7 +22,7 @@ red = object:new({
 	end,
 
     isScorable = function(self)
-        return false
+        return powerup_on
 	end,
 
     isCollisionable = function(self)
@@ -27,6 +31,10 @@ red = object:new({
 
     getPoints = function(self)
         return 100
+    end,
+
+    playSound = function(self)
+        sfx(4,1)
     end,
 
     create = function(x,y)

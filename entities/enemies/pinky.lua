@@ -38,7 +38,11 @@ pinky = object:new({
             self.frames = 1
         end
 
-        self.spr=alternate(self.spraux, sprspeed, 2)
+        if(powerup_on)then
+            self.spr=alternate(magicghostspr, sprspeed, 2)
+        else
+            self.spr=alternate(self.spraux, sprspeed, 2)
+        end
 	end,
 
 	draw = function(self)
@@ -46,7 +50,7 @@ pinky = object:new({
 	end,
 
     isScorable = function(self)
-        return false
+        return powerup_on
 	end,
 
     isCollisionable = function(self)
@@ -55,6 +59,10 @@ pinky = object:new({
 
     getPoints = function(self)
         return 100
+    end,
+
+    playSound = function(self)
+        sfx(4,1)
     end,
 
     create = function(x,y,go_up)

@@ -9,7 +9,7 @@ function _init()
 	current_scene.init()
 	
 	--constants
-	bpillspr=19
+	magicghostspr=32
 	up_line=44
 	dw_line=76
 	sprspeed=10	
