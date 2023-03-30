@@ -7,7 +7,7 @@ level = object:new({
             connector="SBC1",
             finishable=true,
             finished_score=50,
-            finished_col_count=100
+            finished_col_count=60
         },
         {
             name="Level 2",
