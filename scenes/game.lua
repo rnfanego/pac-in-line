@@ -123,10 +123,6 @@ function lerp(A, B, t)
  end
 
 function button_selection()
-	if(btn(⬅️)) then
-		stop()
-	end
-
 	if (btnp(⬆️) and pac.y>(up_line+8)) then
 		pac:moveUp()
 	elseif (btnp(⬇️) and pac.y<(dw_line-8)) then
